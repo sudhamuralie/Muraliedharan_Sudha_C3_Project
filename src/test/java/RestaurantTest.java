@@ -69,7 +69,7 @@ class RestaurantTest {
     //>>>>>>>>>>>>>>>>>>>>>>Calculating Order Cost for List of Items<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     @Test
-    public void order_cost_should_beequal_to_sum_of_the_price_of_the_items_selected()
+    public void order_cost_should_be_equal_to_sum_of_the_price_of_the_items_selected()
     {
         List<String> itemList = Arrays.asList("Sweet corn soup","Vegetable lasagne");
         assertThat(restaurant.calculateOrderCost(itemList),Matchers.is(119 + 269));
