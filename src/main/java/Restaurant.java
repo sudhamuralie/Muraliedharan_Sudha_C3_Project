@@ -1,6 +1,7 @@
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Restaurant {
@@ -62,4 +63,17 @@ public class Restaurant {
         return name;
     }
 
+    public int calculateOrderCost(List<String> itemNames)
+    {
+        int totalCost = 0;
+        List<Item> allItems = getMenu();
+        for(String itemName : itemNames) {
+            for (Item item : allItems) {
+                if (itemName.equals(item.getName())) {
+                    totalCost += item.getPrice();
+                }
+            }
+        }
+        return totalCost;
+    }
 }
