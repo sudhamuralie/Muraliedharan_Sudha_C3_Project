@@ -1,3 +1,4 @@
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -6,7 +7,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.OngoingStubbing;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RestaurantTest {
@@ -60,4 +65,21 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //>>>>>>>>>>>>>>>>>>>>>>Calculating Order Cost for List of Items<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+    @Test
+    public void order_cost_should_beequal_to_sum_of_the_price_of_the_items_selected()
+    {
+        List<String> itemList = Arrays.asList("Sweet corn soup","Vegetable lasagne");
+        assertThat(restaurant.calculateOrderCost(itemList),Matchers.is(119 + 269));
+    }
+    @Test
+    public void order_cost_should_be_0_if_no_item_is_selected() {
+        List<String> itemList = new ArrayList<>();
+        assertEquals(restaurant.calculateOrderCost(itemList), 0);
+    }
+
+    //<<<<<<<<<<<<<<<<<<<<Calculating Order Cost for List of Items>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 }
